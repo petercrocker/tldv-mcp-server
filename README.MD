@@ -86,6 +86,8 @@ Go in the repo.
 
 *Refer to your specific MCP client's documentation for detailed setup instructions (e.g., [Claude Tools](https://modelcontextprotocol.io/quickstart/user)).*
 
+*Disclaimer* Once you are updating this config file, you will need to kill your MCP client and restart it for the changes to be effective. 
+
 ## Development
 
 1.  **Install dependencies:**
@@ -100,19 +102,18 @@ Go in the repo.
     ```
     Edit the `.env` file and add your `TLDV_API_KEY`. Other variables can be configured as needed.
 
-3.  **Build the server:**
-    ```bash
-    npm run build
-    ```
 
-4.  **Run in development mode:**
+3.  **Run in development mode:**
     This command starts the server with auto-reloading on file changes:
     ```bash
-    npm run dev
+    npm run watch
     ```
 
-5.  **Update client for local development:**
+4.  **Update client for local development:**
     Configure your MCP client to use the local development server path (typically `/path/to/your/project/dist/index.js`). Ensure the `TLDV_API_KEY` is accessible, either through the client's `env` configuration or loaded via the `.env` file by the server process.
+
+5. **Reload your MCP Client**
+    Since you are running the watch command, it will recompiled a new version. Reloading your Client (e.g Claud Desktop App), your changes will be effective. 
 
 ## Debugging
 
