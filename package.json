@@ -7,10 +7,10 @@
     "scripts": {
         "start": "node dist/index.js",
         "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
-        "build": "rm -rf dist && tsc && chmod +x dist/*.js",
+        "build": "rm -rf dist && npm run bundle && chmod +x dist/*.js",
+        "bundle": "node scripts/build.js",
         "prepare": "npm run build",
         "watch": "tsc --watch"
-    
     },
     "dependencies": {
         "@modelcontextprotocol/sdk": "^1.8.0",
@@ -21,6 +21,8 @@
     },
     "devDependencies": {
         "@types/node": "^20.11.19",
+        "esbuild": "^0.25.2",
+        "esbuild-node-externals": "^1.18.0",
         "ts-node-dev": "^2.0.0",
         "typescript": "^5.3.3"
     },
