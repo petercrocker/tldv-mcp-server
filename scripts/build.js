@@ -8,7 +8,7 @@ async function bundle() {
       entryPoints: ['src/index.ts'],
       bundle: true,
       platform: 'node',
-      target: 'node18',
+      target: 'node22',
       outfile: 'dist/index.js',
       sourcemap: true,
       minify: true,
