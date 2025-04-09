@@ -82,7 +82,7 @@ You can run this MCP server using either Docker or Node.js. Configure your MCP c
     ```
     Replace `/absolute/path/to/tldv-mcp-server/dist/index.js` with the correct absolute path to the built server file and `your_tldv_api_key` with your tl;dv API key.
 
-*Refer to your specific MCP client's documentation for detailed setup instructions (e.g., [Claude Tools](https://docs.anthropic.com/claude/docs/tools-mcp), [Cursor Docs](https://cursor.sh/docs)).*
+*Refer to your specific MCP client's documentation for detailed setup instructions (e.g., [Claude Tools](https://modelcontextprotocol.io/quickstart/user)).*
 
 ## Development
 
