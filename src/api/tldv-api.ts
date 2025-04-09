@@ -20,7 +20,7 @@ const RETRY_DELAY = 1_000;
 const MAX_RETRY_DELAY = 2_000;
 
 /**
- * TLDR API Client
+ * TLDV API Client
  * 
  * This class provides a type-safe interface to interact with the TLDV API.
  * It handles authentication, request formatting, and response validation.
@@ -41,7 +41,7 @@ export class TldvApi {
   private headers: any;
 
   /**
-   * Creates a new instance of the TLDR API client
+   * Creates a new instance of the TLDV API client
    * @param config - Configuration object containing API key and optional base URL
    * @throws {Error} If the configuration is invalid
    */
@@ -56,7 +56,7 @@ export class TldvApi {
   }
 
   /**
-   * Makes a request to the TLDR API
+   * Makes a request to the TLDV API
    * @param endpoint - The API endpoint to call
    * @param options - Request options including method, body, etc.
    * @returns A promise that resolves to the validated API response
@@ -123,33 +123,6 @@ export class TldvApi {
     }
   }
 
-  /**
-   * Imports a meeting from a URL
-   * 
-   * This endpoint allows you to import a meeting from various video conferencing platforms.
-   * The import process is asynchronous and returns a job ID that can be used to track progress.
-   * 
-   * @param params - Import parameters including meeting URL and metadata
-   * @returns A promise that resolves to the import response
-   * @throws {Error} If the parameters are invalid
-   * 
-   * @example
-   * ```typescript
-   * const result = await api.importMeeting({
-   *   name: 'Team Sync',
-   *   url: 'https://meet.google.com/xxx-yyyy-zzz',
-   *   happenedAt: new Date().toISOString(),
-   *   dryRun: true
-   * });
-   * ```
-   */
-  // async importMeeting(params: ImportMeetingParams): Promise<TldvResponse<ImportMeetingResponse>> {
-  //   const validatedParams = ImportMeetingParamsSchema.parse(params);
-  //   return this.request<ImportMeetingResponse>('/meetings/import', {
-  //     method: 'POST',
-  //     body: JSON.stringify(validatedParams),
-  //   });
-  // }
 
   /**
    * Retrieves a meeting by its ID
