@@ -1,6 +1,6 @@
-# MCP Server for tl;dv API
+# Official MCP Server for tl;dv API
 
-This project provides a Model Context Protocol (MCP) server enabling interaction with the tl;dv API. It allows AI models and other MCP clients to access tl;dv features through a standardized interface.
+This project provides a Model Context Protocol (MCP) server enabling interaction with the [tl;dv](https://tldv.io/) API. It allows AI models and other MCP clients to access tl;dv features through a standardized interface.
 
 ## Features
 
@@ -23,6 +23,8 @@ You can run this MCP server using either Docker or Node.js. Configure your MCP c
 
 ### Using Docker
 
+Go in the repo. 
+
 1.  **Build the Docker image:**
     ```bash
     docker build -t tldv-mcp-server .
@@ -38,12 +40,12 @@ You can run this MCP server using either Docker or Node.js. Configure your MCP c
             "command": "docker",
             "args": [
                 "run",
-                "-i",          // Interactive mode
-                "--rm",        // Remove container on exit
-                "--init",      // Use an init process
-                "-e",          // Set environment variable
+
+                "--rm",        
+                "--init",      
+                "-e",          
                 "TLDV_API_KEY=<your-tldv-api-key>",
-                "tldv-mcp-server" // The image name
+                "tldv-mcp-server"
             ],
           }
         }
