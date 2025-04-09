@@ -1,0 +1,30 @@
+{
+    "name": "tldv-mcp",
+    "version": "1.0.0",
+    "description": "TLDR API MCP Server",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "start": "node dist/index.js",
+        "dev": "ts-node-dev --respawn --transpile-only src/servers/tldv/index.ts",
+        "build": "rm -rf dist && tsc && chmod +x dist/*.js",
+        "prepare": "npm run build",
+        "watch": "tsc --watch"
+    
+    },
+    "dependencies": {
+        "@modelcontextprotocol/sdk": "^1.8.0",
+        "axios": "^1.8.4",
+        "dotenv": "^16.3.1",
+        "fastify": "^4.26.1",
+        "zod": "^3.22.4"
+    },
+    "devDependencies": {
+        "@types/node": "^20.11.19",
+        "ts-node-dev": "^2.0.0",
+        "typescript": "^5.3.3"
+    },
+    "volta": {
+        "node": "22.11.0"
+    }
+}

@@ -1,0 +1,124 @@
+# MCP Server for tl;dv API
+
+This project provides a Model Context Protocol (MCP) server enabling interaction with the tl;dv API. It allows AI models and other MCP clients to access tl;dv features through a standardized interface.
+
+## Features
+
+*   **List Meetings:** Retrieve meetings based on filters (query, date range, participation status, type).
+*   **Get Meeting Metadata:** Fetch detailed information for a specific meeting by ID.
+*   **Get Transcript:** Obtain the transcript for a given meeting ID.
+*   **Get Highlights:** Retrieve highlights generated for a specific meeting ID.
+*   **Import Meeting (Coming Soon):** Functionality to import meetings via URL.
+
+## Prerequisites
+
+*   **tl;dv Account:** A Business or Enterprise tl;dv account is required.
+*   **tl;dv API Key:** You need an API key, which can be requested from your tl;dv settings: [https://tldv.io/app/settings/personal-settings/api-keys](https://tldv.io/app/settings/personal-settings/api-keys).
+*   **Node.js & npm (for Node installation):** If installing via Node.js, ensure Node.js and npm are installed.
+*   **Docker (for Docker installation):** If installing via Docker, ensure Docker is installed and running.
+
+## Installation and Configuration
+
+You can run this MCP server using either Docker or Node.js. Configure your MCP client (e.g., Claude Desktop, Cursor) to connect to the server.
+
+### Using Docker
+
+1.  **Build the Docker image:**
+    ```bash
+    docker build -t tldv-mcp-server .
+    ```
+
+2.  **Configure your MCP Client:**
+    Update your MCP client's configuration file (e.g., `claude_desktop_config.json`). The exact location and format may vary depending on the client.
+
+    ```json
+    {
+        "mcpServers": {
+          "tldv": {
+            "command": "docker",
+            "args": [
+                "run",
+                "-i",          // Interactive mode
+                "--rm",        // Remove container on exit
+                "--init",      // Use an init process
+                "-e",          // Set environment variable
+                "TLDV_API_KEY=<your-tldv-api-key>",
+                "tldv-mcp-server" // The image name
+            ],
+          }
+        }
+      }
+    ```
+    Replace `<your-tldv-api-key>` with your actual tl;dv API key.
+
+### Using Node.js
+
+1.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+2.  **Build the server:**
+    ```bash
+    npm run build
+    ```
+    This command creates a `dist` folder containing the compiled server code (`index.js`).
+
+3.  **Configure your MCP Client:**
+    Update your MCP client's configuration file.
+
+    ```json
+    {
+      "mcpServers": {
+        "tldv": {
+          "command": "node",
+          "args": ["/absolute/path/to/tldv-mcp-server/dist/index.js"],
+          "env": {
+            "TLDV_API_KEY": "your_tldv_api_key"
+          }
+        }
+      }
+    }
+    ```
+    Replace `/absolute/path/to/tldv-mcp-server/dist/index.js` with the correct absolute path to the built server file and `your_tldv_api_key` with your tl;dv API key.
+
+*Refer to your specific MCP client's documentation for detailed setup instructions (e.g., [Claude Tools](https://docs.anthropic.com/claude/docs/tools-mcp), [Cursor Docs](https://cursor.sh/docs)).*
+
+## Development
+
+1.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+2.  **Set up Environment Variables:**
+    Copy the example environment file:
+    ```bash
+    cp .env.example .env
+    ```
+    Edit the `.env` file and add your `TLDV_API_KEY`. Other variables can be configured as needed.
+
+3.  **Build the server:**
+    ```bash
+    npm run build
+    ```
+
+4.  **Run in development mode:**
+    This command starts the server with auto-reloading on file changes:
+    ```bash
+    npm run dev
+    ```
+
+5.  **Update client for local development:**
+    Configure your MCP client to use the local development server path (typically `/path/to/your/project/dist/index.js`). Ensure the `TLDV_API_KEY` is accessible, either through the client's `env` configuration or loaded via the `.env` file by the server process.
+
+## Debugging
+
+*   **Console Logs:** Check the console output when running `npm run dev` for detailed logs. The server uses the `debug` library; you can control log levels via environment variables (e.g., `DEBUG=tldv-mcp:*`).
+*   **Node.js Debugger:** Utilize standard Node.js debugging tools (e.g., Chrome DevTools Inspector, VS Code debugger) by launching the server process with the appropriate flags (e.g., `node --inspect dist/index.js`).
+*   **MCP Client Logs:** Check the logs provided by your MCP client, which might show the requests sent and responses received from this server.
+
+## Learn More
+
+*   [tl;dv Developer API Documentation](https://doc.tldv.io/)
+*   [Model Context Protocol (MCP) Specification](https://modelcontextprotocol.dev/)
