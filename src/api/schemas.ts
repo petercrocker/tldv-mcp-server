@@ -107,18 +107,6 @@ export const GetHighlightsResponseSchema = z.object({
 export type GetHighlightsResponse = z.infer<typeof GetHighlightsResponseSchema>;
 
 /**
- * Import meeting parameters schema
- */
-export const ImportMeetingParamsSchema = z.object({
-  name: z.string().min(1, 'Meeting name is required'),
-  url: z.string().url('Invalid meeting URL'),
-  happenedAt: z.string().datetime().optional(),
-  dryRun: z.boolean().optional(),
-});
-
-export type ImportMeetingParams = z.infer<typeof ImportMeetingParamsSchema>;
-
-/**
  * Import meeting response schema
  */
 export const ImportMeetingResponseSchema = z.object({

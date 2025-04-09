@@ -5,9 +5,6 @@ import {
   GetMeetingsResponse,
   GetTranscriptResponse,
   HealthResponse,
-  ImportMeetingParams,
-  ImportMeetingParamsSchema,
-  ImportMeetingResponse,
   Meeting,
   TldvConfig,
   TldvConfigSchema,
@@ -19,27 +16,23 @@ import axios from 'axios';
 const BASE_URL = 'https://pasta.tldv.io/v1alpha1';
 
 const MAX_RETRIES = 3;
-const RETRY_DELAY = 1_000; // 1 second
-const MAX_RETRY_DELAY = 2_000; // 2 seconds
+const RETRY_DELAY = 1_000; 
+const MAX_RETRY_DELAY = 2_000;
 
 /**
  * TLDR API Client
  * 
- * This class provides a type-safe interface to interact with the TLDR API.
+ * This class provides a type-safe interface to interact with the TLDV API.
  * It handles authentication, request formatting, and response validation.
  * 
  * @example
  * ```typescript
  * const api = new TldvApi({
- *   apiKey: 'your-api-key',
- *   baseUrl: 'https://pasta.tldv.io/v1alpha1' // optional
+ *   apiKey: 'your-api-key'
  * });
  * 
- * // Import a meeting
- * const result = await api.importMeeting({
- *   name: 'Team Sync',
- *   url: 'https://meet.google.com/xxx-yyyy-zzz',
- * });
+ * ```typescript
+ * const meeting = await tldvApi.getMeeting(id);
  * ```
  */
 export class TldvApi {
