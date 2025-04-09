@@ -10,7 +10,8 @@
         "build": "rm -rf dist && npm run bundle && chmod +x dist/*.js",
         "bundle": "node scripts/build.js",
         "prepare": "npm run build",
-        "watch": "tsc --watch"
+        "watch": "tsc --watch",
+        "release": "standard-version -m \"chore(release): {{currentTag}} [release]\""
     },
     "dependencies": {
         "@modelcontextprotocol/sdk": "^1.8.0",
