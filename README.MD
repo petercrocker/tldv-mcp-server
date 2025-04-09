@@ -123,4 +123,4 @@ Go in the repo.
 ## Learn More
 
 *   [tl;dv Developer API Documentation](https://doc.tldv.io/)
-*   [Model Context Protocol (MCP) Specification](https://modelcontextprotocol.dev/)
+*   [Model Context Protocol (MCP) Specification](https://modelcontextprotocol.io/introduction)
