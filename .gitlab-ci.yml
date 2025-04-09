@@ -1,5 +1,14 @@
+stages:
+  - build
+  - release
+  - deploy
+
+variables:
+  DOCKER_REGISTRY: $CI_REGISTRY
+  DOCKER_IMAGE: $CI_REGISTRY_IMAGE
+
 release-version:
-  stage: deploy
+  stage: release
   image: node:22
   script:
     - git config --global user.email "${GIT_CI_EMAIL}"
@@ -11,7 +20,26 @@ release-version:
   rules:
     - if: $CI_COMMIT_BRANCH == "main" && $CI_COMMIT_TITLE !~ /^chore\(release\).*\ \[release\]$/
 
-publish:
+build:
+  stage: build
+  image: node:22
+  script:
+    - npm ci
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+
+test:
+  stage: test
+  image: node:22
+  script:
+    - npm ci
+    - npm run test
+  dependencies:
+    - build
+
+publish-npm:
   stage: deploy
   image: node:22
   script:
@@ -19,10 +47,25 @@ publish:
     - npm config set -- '//gitlab.com/api/v4/packages/npm/:_authToken'="${CI_JOB_TOKEN}"
     - npm config set -- '//gitlab.com/api/v4/projects/${CI_PROJECT_ID}/packages/npm/:_authToken'="${CI_JOB_TOKEN}"
     - npm ci
-    - npm run test
     - npm run build
     - npm publish
-    - echo "-- build completed succesfully"
+    - echo "-- npm publish completed successfully"
+  rules:
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_TAG =~ /^v?[0-9]+\.[0-9]+\.[0-9]+$/
+
+publish-docker:
+  stage: deploy
+  image: docker:latest
+  services:
+    - docker:dind
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  script:
+    - docker build -t $DOCKER_IMAGE:$CI_COMMIT_TAG .
+    - docker tag $DOCKER_IMAGE:$CI_COMMIT_TAG $DOCKER_IMAGE:latest
+    - docker push $DOCKER_IMAGE:$CI_COMMIT_TAG
+    - docker push $DOCKER_IMAGE:latest
+    - echo "-- docker publish completed successfully"
   rules:
     - if: $CI_COMMIT_TAG && $CI_COMMIT_TAG =~ /^v?[0-9]+\.[0-9]+\.[0-9]+$/
 
