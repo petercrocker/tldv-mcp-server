@@ -123,7 +123,7 @@ export type ImportMeetingResponse = z.infer<typeof ImportMeetingResponseSchema>;
 export const GetMeetingsParamsSchema = z.object({
   query: z.string().optional(), // search query
   page: z.number().int().positive().optional(), // page number      
-  limit: z.number().int().positive().optional(), // number of results per page
+  limit: z.number().int().positive().optional().default(50), // number of results per page
   from: z.string().datetime().optional(), // start date
   to: z.string().datetime().optional(), // end date
   onlyParticipated: z.boolean().optional(), // only return meetings where the user participated

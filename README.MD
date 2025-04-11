@@ -1,14 +1,16 @@
 # Official MCP Server for tl;dv API
 
-This project provides a Model Context Protocol (MCP) server enabling interaction with the [tl;dv](https://tldv.io/) API. It allows AI models and other MCP clients to access tl;dv features through a standardized interface.
+🚀 **The First and Only MCP Server for Google Meet, Zoom, and Microsoft Teams Integration**
+
+This project provides a Model Context Protocol (MCP) server enabling seamless interaction with the [tl;dv](https://tldv.io/) API. As the pioneering MCP solution for video conferencing platforms, it unlocks the power of tl;dv's meeting intelligence across Google Meet, Zoom, and Microsoft Teams through a standardized interface. This integration allows AI models and MCP clients to access, analyze, and derive insights from your meetings across all major platforms in one unified way.
 
 ## Features
 
-*   **List Meetings:** Retrieve meetings based on filters (query, date range, participation status, type).
-*   **Get Meeting Metadata:** Fetch detailed information for a specific meeting by ID.
-*   **Get Transcript:** Obtain the transcript for a given meeting ID.
-*   **Get Highlights:** Retrieve highlights generated for a specific meeting ID.
-*   **Import Meeting (Coming Soon):** Functionality to import meetings via URL.
+*   **List Meetings:** Retrieve meetings based on filters (query, date range, participation status, type) across all supported platforms.
+*   **Get Meeting Metadata:** Fetch detailed information for a specific meeting by ID, regardless of the platform it was hosted on.
+*   **Get Transcript:** Obtain the transcript for any meeting ID, with consistent formatting across all platforms.
+*   **Get Highlights:** Retrieve AI-generated highlights for meetings from any supported platform.
+*   **Import Meeting (Coming Soon):** Functionality to import meetings via URL from any supported platform.
 
 ## Prerequisites
 
